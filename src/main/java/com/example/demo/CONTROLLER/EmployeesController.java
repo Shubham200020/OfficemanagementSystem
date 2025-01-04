@@ -27,9 +27,9 @@ public class EmployeesController {
 	public ResponseEntity<List<Employees>> getData(){
 		return employeesService.getEmployees();
 	}
-	@GetMapping("/data")
-	public String getString(){
-		return "Hello";
+	@PostMapping("/delete")
+	public ResponseEntity<Employees> deleteData(@RequestBody Employees emp){
+		return employeesService.delete(emp);
 	}
 
 }
