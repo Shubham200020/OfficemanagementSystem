@@ -2,6 +2,7 @@ package com.example.demo.POJO.Attendance;
 
 import java.sql.Time;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 import com.example.demo.POJO.Employee.Employees;
@@ -19,67 +20,65 @@ public class AttendanceManagementSystem {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private LocalDate  punchInDay;
-	private LocalTime punchInTime;
-	private LocalDate  punchOutDay;
-	private LocalTime punchOutTime;
+	private LocalDateTime  punchInDay;
+	
+	private LocalDateTime  punchOutDay;
+
 	private PunchinStatus status;
+	private int hours;
+	private int minutes;
 	@ManyToOne
 	private Employees employees;
 	public AttendanceManagementSystem() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
-	public AttendanceManagementSystem(Long id, LocalDate punchInDay, LocalTime punchInTime, LocalDate punchOutDay,
-			LocalTime punchOutTime, PunchinStatus status, Employees employees) {
+	public AttendanceManagementSystem(Long id, LocalDateTime punchInDay, LocalDateTime punchOutDay,
+			PunchinStatus status, int hours, int minutes, Employees employees) {
 		super();
 		this.id = id;
 		this.punchInDay = punchInDay;
-		this.punchInTime = punchInTime;
 		this.punchOutDay = punchOutDay;
-		this.punchOutTime = punchOutTime;
 		this.status = status;
+		this.hours = hours;
+		this.minutes = minutes;
 		this.employees = employees;
 	}
-
-	public LocalDate getPunchOutDay() {
-		return punchOutDay;
-	}
-
-	public void setPunchOutDay(LocalDate punchOutDay) {
-		this.punchOutDay = punchOutDay;
-	}
-
 	public Long getId() {
 		return id;
 	}
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public LocalDate getPunchInDay() {
+	public LocalDateTime getPunchInDay() {
 		return punchInDay;
 	}
-	public void setPunchInDay(LocalDate punchInDay) {
+	public void setPunchInDay(LocalDateTime punchInDay) {
 		this.punchInDay = punchInDay;
 	}
-	public LocalTime getPunchInTime() {
-		return punchInTime;
+	public LocalDateTime getPunchOutDay() {
+		return punchOutDay;
 	}
-	public void setPunchInTime(LocalTime punchInTime) {
-		this.punchInTime = punchInTime;
-	}
-	public LocalTime getPunchOutTime() {
-		return punchOutTime;
-	}
-	public void setPunchOutTime(LocalTime punchOutTime) {
-		this.punchOutTime = punchOutTime;
+	public void setPunchOutDay(LocalDateTime punchOutDay) {
+		this.punchOutDay = punchOutDay;
 	}
 	public PunchinStatus getStatus() {
 		return status;
 	}
 	public void setStatus(PunchinStatus status) {
 		this.status = status;
+	}
+	public int getHours() {
+		return hours;
+	}
+	public void setHours(int hours) {
+		this.hours = hours;
+	}
+	public int getMinutes() {
+		return minutes;
+	}
+	public void setMinutes(int minutes) {
+		this.minutes = minutes;
 	}
 	public Employees getEmployees() {
 		return employees;

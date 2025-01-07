@@ -21,10 +21,14 @@ public class EmployeesService {
 	public ResponseEntity<List<Employees>> getEmployees(){
 		return new ResponseEntity<List<Employees>>(employeesRepo.findAll(),HttpStatus.OK);
 	}
+	
+	
 	public ResponseEntity<Employees> saveEmployee(Employees emp) {
 	
 		return new ResponseEntity<Employees>(employeesRepo.save(emp),HttpStatus.ACCEPTED);
 	}
+	
+	
 	public ResponseEntity<Employees>getEmployeeById(String id){
 		Employees emp=null;
 		try {

@@ -1,5 +1,7 @@
 package com.example.demo.CONTROLLER;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,7 +18,7 @@ import jakarta.websocket.server.PathParam;
 public class AttendenceController {
 	@Autowired
 	private AttendanceService as;
-	@GetMapping("/punchin/{id}")
+	@GetMapping("/punch/in/{id}")
 	public AttendanceManagementSystem PunchIn(@PathVariable("id") String id) {
 		return as.punchIn(id);
 		
@@ -26,5 +28,12 @@ public class AttendenceController {
 		return as.punchOut(id);
 		
 	}
-	
+	@GetMapping
+	private List<AttendanceManagementSystem> getAllData(){
+		return as.getAllData();
+	}
+	@GetMapping("/deleteall")
+	private String deleteAllData(){
+		return as.deleteAll();
+	}
 }

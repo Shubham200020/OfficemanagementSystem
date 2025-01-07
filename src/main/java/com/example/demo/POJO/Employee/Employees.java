@@ -3,13 +3,16 @@ package com.example.demo.POJO.Employee;
 import org.hibernate.annotations.GenericGenerator;
 
 import com.example.demo.POJO.Attendance.PunchinStatus;
+import com.example.demo.POJO.Images.Images;
 import com.example.demo.SalarysCalculator.Salary;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 @Entity
 @Table(name = "Employees")
@@ -28,38 +31,37 @@ public class Employees {
 	@Column(name = "role")
 	private Role role;
 	
-	@Embedded
-	@Column(name = "Salary")
-	private Salary salary;
 	
+	@OneToOne(cascade = CascadeType.ALL)
+	private Images images;
 
 	public Employees() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	
 
-	public Employees(String id, String name, String email, String phone, Role role,
-			Salary salary) {
+
+	public Employees(String id, String name, String email, String phone, Role role, Images images) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.email = email;
 		this.phone = phone;
 		this.role = role;
-		
-		this.salary = salary;
+	
+		this.images = images;
 	}
 
 
 
-	public Salary getSalary() {
-		return salary;
+	public Images getImages() {
+		return images;
 	}
 
 
-	public void setSalary(Salary salary) {
-		this.salary = salary;
+
+	public void setImages(Images images) {
+		this.images = images;
 	}
 
 

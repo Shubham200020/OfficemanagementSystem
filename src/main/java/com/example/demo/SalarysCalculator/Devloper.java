@@ -1,5 +1,7 @@
 package com.example.demo.SalarysCalculator;
 
+import com.example.demo.POJO.Employee.Salary;
+
 public class Devloper extends Salary implements SalaryInt{
 
 	@Override
@@ -17,7 +19,7 @@ public class Devloper extends Salary implements SalaryInt{
 		float Annual=(18*salary)/100;
 		 super.setSalary(salary);
 		 
-		super.setAnnual(salary+Annual*12);
+		super.setAnnualSalary(salary+Annual*12);
 	 }
 
 

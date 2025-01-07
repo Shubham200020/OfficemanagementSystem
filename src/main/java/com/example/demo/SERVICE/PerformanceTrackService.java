@@ -1,18 +1,12 @@
 package com.example.demo.SERVICE;
-
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-
 import com.example.demo.POJO.Employee.Employees;
 import com.example.demo.POJO.Employee.PerformanceTrack;
 import com.example.demo.REPOSITORY.PerformanceTrakingRepo;
-
-
-
 @Service
 public class PerformanceTrackService {
 	@Autowired
@@ -51,6 +45,18 @@ public class PerformanceTrackService {
 			// TODO: handle exception
 			return new ResponseEntity<PerformanceTrack>(tsktrac,HttpStatus.BAD_REQUEST);
 		}
+	}
+	public ResponseEntity<PerformanceTrack> findById(Long id){
+		PerformanceTrack tsktrac=null;
+		try {
+			tsktrac=taskTrakingRepo.findById(id).get();
+			return new ResponseEntity<PerformanceTrack>(tsktrac,HttpStatus.ACCEPTED);
+		}
+		catch (Exception e) {
+			// TODO: handle exception
+			return new ResponseEntity<PerformanceTrack>(tsktrac,HttpStatus.BAD_REQUEST);
+		}
+		
 	}
 
 }

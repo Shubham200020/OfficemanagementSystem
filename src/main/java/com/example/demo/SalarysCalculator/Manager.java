@@ -1,5 +1,7 @@
 package com.example.demo.SalarysCalculator;
 
+import com.example.demo.POJO.Employee.Salary;
+
 public class Manager extends Salary implements SalaryInt {
 
 	@Override

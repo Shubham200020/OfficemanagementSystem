@@ -2,15 +2,15 @@ package com.example.demo.SERVICE;
 
 
 
+import java.time.Duration;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
-
-
 import org.springframework.stereotype.Service;
-
 import com.example.demo.POJO.Attendance.AttendanceManagementSystem;
 import com.example.demo.POJO.Attendance.PunchinStatus;
 import com.example.demo.POJO.Employee.Employees;
@@ -40,8 +40,8 @@ public class AttendanceService extends EmployeesService{
 			pr.setStatus(PunchinStatus.punchin);
 			ams.setEmployees(es);
 			ams.setStatus(PunchinStatus.punchin);
-			ams.setPunchInDay(LocalDate.now());
-			ams.setPunchInTime(LocalTime.now());
+			ams.setPunchInDay(LocalDateTime.now());
+			
 			performanceTrackService.saveDate(pr);
 			return auAttendanceRepo.save(ams);
 		}
@@ -52,15 +52,26 @@ public class AttendanceService extends EmployeesService{
 		PerformanceTrack pr=null;
 		AttendanceManagementSystem ams=auAttendanceRepo.findById(id).get();
 		pr=performanceTrackService.getPerformanceById(ams.getEmployees()).getBody();
+		if(pr.getStatus()==PunchinStatus.punchin) {
+		ams.setPunchOutDay(LocalDateTime.now());
+		ZoneId zone = ZoneId.of("Asia/Kolkata");
+		ZonedDateTime punchin = ZonedDateTime.of(ams.getPunchInDay(), zone);
+		ZonedDateTime punchout = ZonedDateTime.of(LocalDateTime.now(), zone);
+		ams.setStatus(PunchinStatus.punchout);
+		Duration duration=Duration.between(punchin,punchout);
+		ams.setHours((int)duration.toHours());
+		ams.setMinutes((int)duration.toMinutes());
+		
+		}		
 		pr.setStatus(PunchinStatus.punchout);
-		if(pr.getStatus()==PunchinStatus.punchout) {
-		ams.setPunchOutDay(LocalDate.now());
-		ams.setPunchOutTime(LocalTime.now());
-		ams.setStatus(PunchinStatus.punchout);}	
 		performanceTrackService.saveDate(pr);
 		return auAttendanceRepo.save(ams);
 	}
-	public List<PerformanceTrack> getAllPerformance(){
-		return null;
+	public List<AttendanceManagementSystem> getAllData(){
+		return auAttendanceRepo.findAll();
+	}
+	public String deleteAll() {
+		auAttendanceRepo.deleteAll();
+		return "Delete";
 	}
 }
