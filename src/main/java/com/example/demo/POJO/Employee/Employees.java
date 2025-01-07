@@ -2,9 +2,10 @@ package com.example.demo.POJO.Employee;
 
 import org.hibernate.annotations.GenericGenerator;
 
+
 import com.example.demo.POJO.Attendance.PunchinStatus;
 import com.example.demo.POJO.Images.Images;
-import com.example.demo.SalarysCalculator.Salary;
+
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;

@@ -2,6 +2,7 @@ package com.example.demo.SERVICE;
 
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,7 +12,7 @@ import com.example.demo.POJO.Employee.Employees;
 import com.example.demo.POJO.Employee.Role;
 import com.example.demo.REPOSITORY.EmployeesRepo;
 import com.example.demo.SalarysCalculator.Devloper;
-import com.example.demo.SalarysCalculator.Salary;
+
 import com.example.demo.SalarysCalculator.SalaryInt;
 
 @Service
